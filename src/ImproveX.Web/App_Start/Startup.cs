@@ -1,4 +1,6 @@
-﻿using Abp.Owin;
+﻿using Abp.Hangfire;
+using Abp.Owin;
+using Hangfire;
 using ImproveX.Api.Controllers;
 using ImproveX.Web;
 using Microsoft.AspNet.Identity;
@@ -29,10 +31,10 @@ namespace ImproveX.Web
             app.MapSignalR();
 
             //ENABLE TO USE HANGFIRE dashboard (Requires enabling Hangfire in ImproveXWebModule)
-            //app.UseHangfireDashboard("/hangfire", new DashboardOptions
-            //{
-            //    Authorization = new[] { new AbpHangfireAuthorizationFilter() } //You can remove this line to disable authorization
-            //});
+            app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            {
+                Authorization = new[] { new AbpHangfireAuthorizationFilter() } //You can remove this line to disable authorization
+            });
         }
     }
 }

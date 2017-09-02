@@ -21,7 +21,7 @@ namespace ImproveX.Web
         typeof(ImproveXApplicationModule),
         typeof(ImproveXWebApiModule),
         typeof(AbpWebSignalRModule),
-        //typeof(AbpHangfireModule), - ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
+        typeof(AbpHangfireModule), //- ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
         typeof(AbpWebMvcModule))]
     public class ImproveXWebModule : AbpModule
     {
@@ -34,10 +34,10 @@ namespace ImproveX.Web
             Configuration.Navigation.Providers.Add<ImproveXNavigationProvider>();
 
             //Configure Hangfire - ENABLE TO USE HANGFIRE INSTEAD OF DEFAULT JOB MANAGER
-            //Configuration.BackgroundJobs.UseHangfire(configuration =>
-            //{
-            //    configuration.GlobalConfiguration.UseSqlServerStorage("Default");
-            //});
+            Configuration.BackgroundJobs.UseHangfire(configuration =>
+            {
+                configuration.GlobalConfiguration.UseSqlServerStorage("Default");
+            });
         }
 
         public override void Initialize()
