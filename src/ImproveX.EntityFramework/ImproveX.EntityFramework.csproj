@@ -131,11 +131,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFramework\DbModelBuilderExtension.cs" />
     <Compile Include="EntityFramework\ImproveXDbContext.cs" />
     <Compile Include="EntityFramework\Repositories\ImproveXRepositoryBase.cs" />
     <Compile Include="Migrations\201707261347311_Initial_Migration.cs" />
     <Compile Include="Migrations\201707261347311_Initial_Migration.Designer.cs">
       <DependentUpon>201707261347311_Initial_Migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709031513461_initProductionControl.cs" />
+    <Compile Include="Migrations\201709031513461_initProductionControl.Designer.cs">
+      <DependentUpon>201709031513461_initProductionControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -162,6 +167,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201707261347311_Initial_Migration.resx">
       <DependentUpon>201707261347311_Initial_Migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709031513461_initProductionControl.resx">
+      <DependentUpon>201709031513461_initProductionControl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

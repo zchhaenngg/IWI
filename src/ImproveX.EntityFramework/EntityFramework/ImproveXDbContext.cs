@@ -1,8 +1,12 @@
 ﻿using System.Data.Common;
+using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using Abp.Zero.EntityFramework;
 using ImproveX.Authorization.Roles;
 using ImproveX.Authorization.Users;
 using ImproveX.MultiTenancy;
+using ImproveX.ProductionControl;
+using ImproveX.ProductionControl.Basic;
 
 namespace ImproveX.EntityFramework
 {
@@ -42,6 +46,28 @@ namespace ImproveX.EntityFramework
          : base(existingConnection, contextOwnsConnection)
         {
 
+        }
+
+        public virtual IDbSet<Factory> Factories { get; set; }
+        public virtual IDbSet<Procedure> Procedures { get; set; }
+        public virtual IDbSet<ProcedureStatus> ProcedureStatus { get; set; }
+        public virtual IDbSet<Product> Products { get; set; }
+        public virtual IDbSet<Workshop> Workshops { get; set; }
+        public virtual IDbSet<WorkshopProduct> WorkshopProducts { get; set; }
+        public virtual IDbSet<ProcedureTask> ProcedureTasks { get; set; }
+        public virtual IDbSet<ProductTask> ProductTasks { get; set; }
+        public virtual IDbSet<WorkOrder> WorkOrders { get; set; }
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            modelBuilder.Conventions.Remove<OneToOneConstraintIntroductionConvention>();
+
+            //PdCtrl ProductionControl 生产控制
+            modelBuilder.SetTableOfProductionControl();
+            modelBuilder.SetNavigationOfProductionControl();
         }
     }
 }
